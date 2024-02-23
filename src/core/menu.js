@@ -3,7 +3,9 @@ export class Menu {
     this.el = document.querySelector(selector)
 
     document.body.addEventListener('click', event => {
+      console.log(event.target)
       if (event.target.offsetParent !== this.el) {
+        
         this.close()
       }
     })
