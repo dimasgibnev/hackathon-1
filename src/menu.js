@@ -4,7 +4,7 @@ export class ContextMenu extends Menu {
 
     constructor(selector) {
         super(selector);
-        this.menu = document.querySelector('.menu');
+        this.menu = document.querySelector(selector);
     }
     add(module) {
         const liItem = document.createElement('li');
@@ -22,6 +22,8 @@ export class ContextMenu extends Menu {
     openMenu() {
         document.body.addEventListener('contextmenu', event => {
             event.preventDefault();
+            this.menu.style.left = event.clientX + 'px';
+            this.menu.style.top = event.clientY + 'px';
             this.open();
             this.add()
          })
