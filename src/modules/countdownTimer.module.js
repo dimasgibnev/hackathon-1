@@ -13,9 +13,13 @@ export class TimerModule extends Module {
             document.body.appendChild(this.timer);
 
             const countdown = setInterval(() => {
-                let seconds = parseInt(this.timer.textContent) - 1;
-                this.timer.textContent = seconds + ' секунд';
-                if (seconds <= 0) {
+                let totalSeconds = parseInt(this.timer.dataset.time);
+                totalSeconds -= 1;
+                this.timer.dataset.time = totalSeconds;
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                this.timer.textContent = `${minutes} m ${seconds} s`;
+                if (totalSeconds <= 0) {
                     clearInterval(countdown);
                     alert('Время вышло!');
                     this.timer.remove();
@@ -26,12 +30,11 @@ export class TimerModule extends Module {
 
     render(time) {
         const timer = document.createElement('div');
-        timer.style.position = 'fixed';
-        timer.style.bottom = '10px';
-        timer.style.right = '10px';
-        timer.style.padding = '10px';
-        timer.style.background = 'lightgray';
-        timer.textContent = time + ' секунд';
+        timer.className = 'timerElement';
+        timer.dataset.time = time;
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        timer.textContent = `${minutes} минут ${seconds} секунд`;
         return timer;
     }
 
