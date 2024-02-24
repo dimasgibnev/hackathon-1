@@ -7,17 +7,9 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
-<<<<<<< HEAD
-        document.body.addEventListener('click', (event) => {
-            if (event.type === 'click') {
-                this.count += 1;
-            }
-        });
-=======
-        
+
 
         document.body.addEventListener('click', this.countClick);
->>>>>>> cff3d992bf7f8ca86420fbb8a6d34b0a7f90c0bc
 
         setTimeout(() => {
             alert(`Количество кликов за 3 секунды: ${this.count - 1}`);
@@ -26,12 +18,7 @@ export class ClicksModule extends Module {
             module.remove();
             document.body.removeEventListener('click', this.countClick);
         }, 3000)
-<<<<<<< HEAD
     }
-
-    toHTML() {
-=======
-      }
 
     countClick = (event) => {
         if (event.type === 'click') {
@@ -43,7 +30,8 @@ export class ClicksModule extends Module {
                 module.remove();
 
             }
-        }}
+        }
+    }
     render(count) {
         const container = document.createElement('div');
         container.className = 'clicks-container';
@@ -55,14 +43,13 @@ export class ClicksModule extends Module {
         clicks.textContent = `Кликов: ${count - 1}`;
 
         container.append(clicks);
-        
+
         return container;
     }
 
 
-    
-      toHTML() {
->>>>>>> cff3d992bf7f8ca86420fbb8a6d34b0a7f90c0bc
+
+    toHTML() {
         return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
     }
 }

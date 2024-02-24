@@ -7,19 +7,17 @@ export class ContextMenu extends Menu {
     constructor(selector) {
         super(selector);
         this.menu = document.querySelector(selector);
-        this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)'), new TimerModule('timer', 'Таймер')];
-        this.modules.forEach(module => this.add(module));
-        document.body.addEventListener('click', event => {
-            if (event.target.offsetParent !== this.el) {
-                this.close()
-                document.querySelectorAll('h1').forEach(h => h.remove())
-            } else if (event.target) {
+        this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)'),
+        new TimerModule('timer', 'Таймер')];
+
+        this.menu.addEventListener('click', (event) => {
+            if (event.target) {
                 const moduleType = event.target.dataset.type;                 
-                const module = this.modules.find(m => m.type === moduleType);  
+                const module = this.modules.find(m => m.type === moduleType); 
                 if (module) {                                                 
                     module.trigger();                                         
-                }                                                               
-                this.close()                                                    
+                }
+                this.close()
             }
         })
     }
@@ -36,6 +34,8 @@ export class ContextMenu extends Menu {
     }
 
     run() {
+        this.modules.forEach(module => this.add(module));
+
         document.body.addEventListener('contextmenu', event => {
             event.preventDefault();
             this.menu.style.left = event.clientX + 'px';
@@ -47,5 +47,4 @@ export class ContextMenu extends Menu {
     close() {
         this.menu.classList.remove('open');
     }
-
 }
