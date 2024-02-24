@@ -25,6 +25,7 @@ export class ClicksModule extends Module {
             this.count += 1;
             const clickModule = this.render(this.count);
             const module = document.querySelector('.clicks-container');
+            
             if (!document.body.contains(clickModule)) {
                 document.body.append(clickModule);
                 if (module) {
