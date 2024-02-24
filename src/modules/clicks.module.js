@@ -36,6 +36,8 @@ export class ClicksModule extends Module {
     render(count) {
         const container = document.createElement('div');
         container.className = 'clicks-container';
+        container.style.left = event.clientX + 'px';
+        container.style.top = event.clientY + 'px';
 
         const clicks = document.createElement('span');
         clicks.className = 'clicks-amount';
