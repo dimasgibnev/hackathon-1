@@ -7,15 +7,9 @@ export class TimerModule extends Module {
     }
 
     trigger() {
-        const time = prompt("Введите время в миллисекундах");
+        const time = prompt("Введите время в секундах");
         if (time) {
-            this.timer = document.createElement('div');
-            this.timer.style.position = 'fixed';
-            this.timer.style.bottom = '10px';
-            this.timer.style.right = '10px';
-            this.timer.style.padding = '10px';
-            this.timer.style.background = 'lightgray';
-            this.timer.textContent = time / 1000 + ' секунд';
+            this.timer = this.render(time);
             document.body.appendChild(this.timer);
 
             const countdown = setInterval(() => {
@@ -28,6 +22,17 @@ export class TimerModule extends Module {
                 }
             }, 1000);
         }
+    }
+
+    render(time) {
+        const timer = document.createElement('div');
+        timer.style.position = 'fixed';
+        timer.style.bottom = '10px';
+        timer.style.right = '10px';
+        timer.style.padding = '10px';
+        timer.style.background = 'lightgray';
+        timer.textContent = time + ' секунд';
+        return timer;
     }
 
     toHTML() {
