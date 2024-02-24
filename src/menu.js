@@ -1,6 +1,7 @@
 import { Menu } from './core/menu';
 import { ClicksModule } from './modules/clicks.module';
 import { TimerModule } from './modules/countdownTimer.module'; // Поменяй название модуля, сейчас он ссылается на несуществующий.
+import { BackgroundModule } from './modules/background.module';
 
 export class ContextMenu extends Menu {
     
@@ -8,7 +9,8 @@ export class ContextMenu extends Menu {
         super(selector);
         this.menu = document.querySelector(selector);
         this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)'), 
-                        new TimerModule('timer', 'Таймер')];
+                        new TimerModule('timer', 'Таймер'),
+                        new BackgroundModule('background', 'Случайный фон')];
         
         this.menu.addEventListener('click', (event) => {
             if (event.target) {
