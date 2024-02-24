@@ -11,7 +11,11 @@ export class ContextMenu extends Menu {
         document.body.addEventListener('click', event => {
             if (event.target.offsetParent !== this.el) {
               this.close()
-            } else { 
+            }
+          })
+        
+        this.menu.addEventListener('click', (event) => {
+            if (event.target) {
                 this.modules[0].trigger();
                 this.close()
             }

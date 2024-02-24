@@ -20,7 +20,7 @@ export class ClicksModule extends Module {
             }});
 
         setTimeout(() => {
-            alert(`Количество кликов за 3 секунды: ${count}`);
+            alert(`Количество кликов за 3 секунды: ${count - 1}`);
             count = 0;
             const module = document.querySelector('.clicks-container')
             module.remove();
@@ -33,7 +33,7 @@ export class ClicksModule extends Module {
 
         const clicks = document.createElement('span');
         clicks.className = 'clicks-amount';
-        clicks.textContent = `Кликов: ${count}`;
+        clicks.textContent = `Кликов: ${count - 1}`;
 
         container.append(clicks);
         
