@@ -1,16 +1,25 @@
 import {Menu} from './core/menu';
+import { ClicksModule } from './modules/clicks.module';
 
 export class ContextMenu extends Menu {
 
     constructor(selector) {
         super(selector);
         this.menu = document.querySelector(selector);
+        this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)')];
+        document.body.addEventListener('click', event => {
+            if (event.target.offsetParent !== this.el) {
+              this.close()
+              document.querySelectorAll('h1').forEach(h => h.remove())
+            } else if (event.target) {
+                this.modules[0].trigger();
+                this.close()
+            }
+          })
     }
     add(module) {
-        const liItem = document.createElement('li');
-        liItem.className = 'menu-item';
-        liItem.textContent = 'Первая функция'
-        this.menu.append(liItem);
+        this.modules.push(module);
+        this.menu.insertAdjacentHTML('afterbegin', (module.toHTML()));
     }
 
     open() {
@@ -19,15 +28,16 @@ export class ContextMenu extends Menu {
         }
     }
 
-    openMenu() {
+    run() {
         document.body.addEventListener('contextmenu', event => {
             event.preventDefault();
             this.menu.style.left = event.clientX + 'px';
             this.menu.style.top = event.clientY + 'px';
             this.open();
-            this.add()
+            this.add(this.modules[0])
          })
     }
+
     close() {
         this.menu.classList.remove('open');
     }
