@@ -1,4 +1,4 @@
-import {Module} from '../core/module'
+import { Module } from '../core/module'
 
 export class ClicksModule extends Module {
     constructor(type, text) {
@@ -7,8 +7,6 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
-        
-
         document.body.addEventListener('click', this.countClick);
 
         setTimeout(() => {
@@ -33,6 +31,7 @@ export class ClicksModule extends Module {
                 }
             }
         }}
+
     render(count) {
         const container = document.createElement('div');
         container.className = 'clicks-container';
@@ -48,9 +47,7 @@ export class ClicksModule extends Module {
         return container;
     }
 
-
-    
       toHTML() {
         return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
-      }
+    }
 }
