@@ -27,8 +27,9 @@ export class ClicksModule extends Module {
             const module = document.querySelector('.clicks-container');
             if (!document.body.contains(clickModule)) {
                 document.body.append(clickModule);
-                module.remove();
-
+                if (module) {
+                    module.remove();
+                }
             }
         }}
     render(count) {
