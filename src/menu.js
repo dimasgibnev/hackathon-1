@@ -1,6 +1,6 @@
 import { Menu } from './core/menu';
 import { ClicksModule } from './modules/clicks.module';
-import { TimerModule } from './modules/timer.module';
+import { TimerModule } from './modules/timer.module'; // Поменяй название модуля, сейчас он ссылается на несуществующий.
 
 export class ContextMenu extends Menu {
 
@@ -14,12 +14,12 @@ export class ContextMenu extends Menu {
                 this.close()
                 document.querySelectorAll('h1').forEach(h => h.remove())
             } else if (event.target) {
-                const moduleType = event.target.dataset.type;
-                const module = this.modules.find(m => m.type === moduleType);
-                if (module) {
-                    module.trigger();
-                }
-                this.close()
+                const moduleType = event.target.dataset.type;                 // Объясни что делают эти строки
+                const module = this.modules.find(m => m.type === moduleType); // 
+                if (module) {                                                 //
+                    module.trigger();                                         //
+                }                                                               
+                this.close()                                                    
             }
         })
     }
