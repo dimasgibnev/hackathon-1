@@ -7,18 +7,22 @@ export class ContextMenu extends Menu {
         super(selector);
         this.menu = document.querySelector(selector);
         this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)')];
+
         document.body.addEventListener('click', event => {
             if (event.target.offsetParent !== this.el) {
               this.close()
-              document.querySelectorAll('h1').forEach(h => h.remove())
-            } else if (event.target) {
+            }
+          })
+        
+        this.menu.addEventListener('click', (event) => {
+            if (event.target) {
                 this.modules[0].trigger();
                 this.close()
             }
           })
     }
+
     add(module) {
-        this.modules.push(module);
         this.menu.insertAdjacentHTML('afterbegin', (module.toHTML()));
     }
 
@@ -29,12 +33,14 @@ export class ContextMenu extends Menu {
     }
 
     run() {
+        this.add(this.modules[0]);
+
         document.body.addEventListener('contextmenu', event => {
             event.preventDefault();
             this.menu.style.left = event.clientX + 'px';
             this.menu.style.top = event.clientY + 'px';
             this.open();
-            this.add(this.modules[0])
+
          })
     }
 
