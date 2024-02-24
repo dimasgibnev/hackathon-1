@@ -34,7 +34,7 @@ export class TimerModule extends Module {
         timer.dataset.time = time;
         const minutes = Math.floor(time / 60);
         const seconds = time % 60;
-        timer.textContent = `${minutes} минут ${seconds} секунд`;
+        timer.textContent = `${minutes} m ${seconds} s`;
         return timer;
     }
 
