@@ -2,7 +2,7 @@ import {Menu} from './core/menu';
 import { ClicksModule } from './modules/clicks.module';
 
 export class ContextMenu extends Menu {
-
+    
     constructor(selector) {
         super(selector);
         this.menu = document.querySelector(selector);
