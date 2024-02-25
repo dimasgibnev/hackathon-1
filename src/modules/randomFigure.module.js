@@ -1,5 +1,5 @@
 import { Module } from '../core/module';
-import { getRandomColor } from '../utils';
+import { getRandomColor } from '../utils'; 
 
 export class ShapeModule extends Module {
     constructor(type, text) {
@@ -12,7 +12,7 @@ export class ShapeModule extends Module {
             this.currentShape.remove();
         }
 
-        const shapes = ['circle', 'triangle'];
+        const shapes = ['circle', 'triangle', 'square', 'pentagon', 'hexagon'];
         const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
         this.currentShape = this.render(randomShape);
         document.body.appendChild(this.currentShape);

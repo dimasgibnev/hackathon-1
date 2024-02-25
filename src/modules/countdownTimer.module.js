@@ -15,17 +15,20 @@ export class TimerModule extends Module {
         document.body.appendChild(this.timer);
 
         const startButton = this.timer.querySelector('.start-button');
+        
         startButton.addEventListener('click', () => {
             const timeInput = this.timer.querySelector('.time-input');
             const timeDisplay = this.timer.querySelector('.time-display');
             let totalSeconds = parseInt(timeInput.value);
             timeInput.remove();
             startButton.remove();
+
             const countdown = setInterval(() => {
                 totalSeconds -= 1;
                 const minutes = Math.floor(totalSeconds / 60);
                 const seconds = totalSeconds % 60;
                 timeDisplay.textContent = `${minutes} m ${seconds} s`;
+
                 if (totalSeconds <= 0) {
                     clearInterval(countdown);
                     timeDisplay.textContent = 'Время вышло!';
@@ -42,6 +45,7 @@ export class TimerModule extends Module {
             <button class="start-button">Старт</button>
             <p class="time-display"></p>
         `;
+
         return timer;
     }
 

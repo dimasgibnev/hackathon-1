@@ -11,7 +11,7 @@ export class BackgroundModule extends Module {
     document.body.style.background = color;
   }
 
-  toHTML (color) {
+  toHTML () {
     return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`;
   }
 }
