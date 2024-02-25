@@ -94,7 +94,7 @@ body {
     position: fixed;
     margin: 0 auto;
     width: 200px;
-    height: 50px;
+    height: 70px;
     background: #1b1a1a;
     border-radius: 5px;
 }
@@ -102,9 +102,12 @@ body {
 .clicks-amount__close-button {
     position: relative;
     background-color: #ff0000;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
+    left: calc(100% - 10px);
+    bottom: 5px;
+    cursor: pointer;
 }
 
 .clicks-amount {
@@ -121,3 +124,27 @@ body {
     padding: 10px;
     background-color: lightgray;
 }
+
+.shape {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.shape.circle {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid;
+}
+

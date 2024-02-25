@@ -7,35 +7,41 @@ export class TimerModule extends Module {
     }
 
     trigger() {
-        const time = prompt("Введите время в секундах");
-        if (time) {
-            this.timer = this.render(time);
-            document.body.appendChild(this.timer);
+        if (this.timer) {
+            this.timer.remove();
+        }
 
+        this.timer = this.render();
+        document.body.appendChild(this.timer);
+
+        const startButton = this.timer.querySelector('.start-button');
+        startButton.addEventListener('click', () => {
+            const timeInput = this.timer.querySelector('.time-input');
+            const timeDisplay = this.timer.querySelector('.time-display');
+            let totalSeconds = parseInt(timeInput.value);
+            timeInput.remove();
+            startButton.remove();
             const countdown = setInterval(() => {
-                let totalSeconds = parseInt(this.timer.dataset.time);
                 totalSeconds -= 1;
-                this.timer.dataset.time = totalSeconds;
                 const minutes = Math.floor(totalSeconds / 60);
                 const seconds = totalSeconds % 60;
-                this.timer.textContent = `${minutes} m ${seconds} s`;
+                timeDisplay.textContent = `${minutes} m ${seconds} s`;
                 if (totalSeconds <= 0) {
                     clearInterval(countdown);
-                    alert('Время вышло!');
-                    this.timer.remove();
+                    timeDisplay.textContent = 'Время вышло!';
                 }
             }, 1000);
-        }
+        });
     }
 
-    render(time) {
+    render() {
         const timer = document.createElement('div');
         timer.className = 'timerElement';
-        timer.dataset.time = time;
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        timer.textContent = `${minutes} m ${seconds} s`;
-        
+        timer.innerHTML = `
+            <input type="number" class="time-input" placeholder="Введите время в секундах">
+            <button class="start-button">Старт</button>
+            <p class="time-display"></p>
+        `;
         return timer;
     }
 
