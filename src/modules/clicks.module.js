@@ -20,6 +20,8 @@ export class ClicksModule extends Module {
             document.body.append(this.addStatistic(this.count, this.dblclick));
             const closeBtn = document.querySelector('.clicks-amount__close-button');
             const statisticModule = document.querySelector('.clicks-amount__statistic');
+            const module = document.querySelector('.clicks-container');
+            
             closeBtn.addEventListener('click', () => {
                 statisticModule.remove();
             });
@@ -31,7 +33,6 @@ export class ClicksModule extends Module {
 
             this.count = 0;
             this.dblclick = 0;
-            const module = document.querySelector('.clicks-container')
             module.remove();
             document.body.removeEventListener('click', this.countClick);
             document.body.removeEventListener('dblclick', this.countDblClick);
