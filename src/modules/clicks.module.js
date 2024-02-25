@@ -69,21 +69,21 @@ export class ClicksModule extends Module {
     }
 
     addStatistic(count, dblclick) {
-        const container = document.createElement('div');
-        container.className = 'clicks-amount__statistic';
-
-        const clicks = document.createElement('span');
-        clicks.className = 'clicks-amount';
-        clicks.insertAdjacentHTML('afterbegin', `Всего кликов: ${count - 1}
-                                                <br/>
-                                                Дабл кликов: ${dblclick}`);
-
-        const closeBtn = document.createElement('div');
-        closeBtn.className = 'clicks-amount__close-button';
-
-        container.append(clicks, closeBtn);
-
-        return container;
+            const container = document.createElement('div');
+            container.className = 'clicks-amount__statistic';
+    
+            const clicks = document.createElement('span');
+            clicks.className = 'clicks-amount';
+            clicks.insertAdjacentHTML('afterbegin', `Всего кликов: ${count - 1}
+                                                    <br/>
+                                                    Дабл кликов: ${dblclick}`);
+    
+            const closeBtn = document.createElement('div');
+            closeBtn.className = 'clicks-amount__close-button';
+    
+            container.append(clicks, closeBtn);
+    
+            return container;
     }
 
     toHTML() {
