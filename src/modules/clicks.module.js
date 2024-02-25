@@ -12,7 +12,7 @@ export class ClicksModule extends Module {
         document.body.addEventListener('click', this.countClick);
 
         setTimeout(() => {
-            alert(`Количество кликов за 3 секунды: ${this.count - 1}`);
+            // alert(`Количество кликов за 3 секунды: ${this.count - 1}`);
             this.count = 0;
             const module = document.querySelector('.clicks-container')
             module.remove();
