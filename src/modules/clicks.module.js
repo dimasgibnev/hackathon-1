@@ -49,8 +49,6 @@ export class ClicksModule extends Module {
 
     countDblClick = (event) => {
         if (event.detail === 2) {
-            event.preventDefault();
-            this.count += 2;
             this.dblclick += 1;
         }
     }
