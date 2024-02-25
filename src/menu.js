@@ -1,14 +1,16 @@
 import { Menu } from './core/menu';
 import { ClicksModule } from './modules/clicks.module';
-import { TimerModule } from './modules/countdownTimer.module'; // Поменяй название модуля, сейчас он ссылается на несуществующий.
+import { TimerModule } from './modules/countdownTimer.module';
 import { BackgroundModule } from './modules/background.module';
+import {ShapeModule} from './modules/randomFigure.module';
 
 export class ContextMenu extends Menu {
     constructor(selector) {
         super(selector);
         this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)'),
-                        new TimerModule('timer', 'Таймер'),
-                        new BackgroundModule('background', 'Случайный фон')];
+        new TimerModule('timer', 'Таймер'),
+        new BackgroundModule('background', 'Случайный фон'),
+        new ShapeModule('shape', 'Случайная фигура')];
         this.modules.forEach(module => this.add(module));
         const { greetModal, confirmBtn } = this.greetingWindow();
 
@@ -24,11 +26,11 @@ export class ContextMenu extends Menu {
 
         this.el.addEventListener('click', (event) => {
             if (event.target) {
-                const moduleType = event.target.dataset.type;                 
-                const module = this.modules.find(m => m.type === moduleType); 
+                const moduleType = event.target.dataset.type;
+                const module = this.modules.find(m => m.type === moduleType);
                 this.close()
-                if (module) {                                                 
-                    module.trigger();                                         
+                if (module) {
+                    module.trigger();
                 }
             }
         });
@@ -57,17 +59,17 @@ export class ContextMenu extends Menu {
         if (this.el.childNodes.length) {
             this.el.classList.add('open');
 
-            if ( (windowWidth - clickX) < menuWidth ) {
+            if ((windowWidth - clickX) < menuWidth) {
                 this.el.style.left = windowWidth - menuWidth + "px";
-              } else {
+            } else {
                 this.el.style.left = clickX + "px";
-              }
-             
-              if ( (windowHeight - clickY) < menuHeight ) {
+            }
+
+            if ((windowHeight - clickY) < menuHeight) {
                 this.el.style.top = windowHeight - menuHeight + "px";
-              } else {
+            } else {
                 this.el.style.top = clickY + "px";
-              }
+            }
         }
     }
 
@@ -91,6 +93,6 @@ export class ContextMenu extends Menu {
         greetModal.append(greetText, confirmBtn);
         document.body.prepend(greetModal);
 
-        return {greetModal,confirmBtn};
+        return { greetModal, confirmBtn };
     }
 }
