@@ -1,4 +1,4 @@
-import {Module} from '../core/module'
+import { Module } from '../core/module'
 
 export class ClicksModule extends Module {
     constructor(type, text) {
@@ -7,7 +7,7 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
-        
+
 
         document.body.addEventListener('click', this.countClick);
 
@@ -18,7 +18,7 @@ export class ClicksModule extends Module {
             module.remove();
             document.body.removeEventListener('click', this.countClick);
         }, 3000)
-      }
+    }
 
     countClick = (event) => {
         if (event.type === 'click') {
@@ -28,9 +28,9 @@ export class ClicksModule extends Module {
             if (!document.body.contains(clickModule)) {
                 document.body.append(clickModule);
                 module.remove();
-
             }
-        }}
+        }
+    }
     render(count) {
         const container = document.createElement('div');
         container.className = 'clicks-container';
@@ -42,13 +42,13 @@ export class ClicksModule extends Module {
         clicks.textContent = `Кликов: ${count - 1}`;
 
         container.append(clicks);
-        
+
         return container;
     }
 
 
-    
-      toHTML() {
+
+    toHTML() {
         return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
-      }
+    }
 }
