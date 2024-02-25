@@ -28,7 +28,6 @@ export class ClicksModule extends Module {
             if (!document.body.contains(clickModule)) {
                 document.body.append(clickModule);
                 module.remove();
-
             }
         }
     }
