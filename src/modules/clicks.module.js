@@ -2,7 +2,7 @@ import { Module } from '../core/module'
 
 export class ClicksModule extends Module {
     constructor(type, text) {
-        super(type, text)
+        super(type, text);
         this.count = 0;
         this.dblclick = 0;
     }
