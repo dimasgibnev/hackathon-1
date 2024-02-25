@@ -35,6 +35,7 @@ export class TimerModule extends Module {
         const minutes = Math.floor(time / 60);
         const seconds = time % 60;
         timer.textContent = `${minutes} m ${seconds} s`;
+        
         return timer;
     }
 
