@@ -7,6 +7,10 @@ export class TimerModule extends Module {
     }
 
     trigger() {
+        if (this.timer) {
+            this.timer.remove();
+        }
+
         this.timer = this.render();
         document.body.appendChild(this.timer);
 
@@ -15,6 +19,8 @@ export class TimerModule extends Module {
             const timeInput = this.timer.querySelector('.time-input');
             const timeDisplay = this.timer.querySelector('.time-display');
             let totalSeconds = parseInt(timeInput.value);
+            timeInput.remove();
+            startButton.remove();
             const countdown = setInterval(() => {
                 totalSeconds -= 1;
                 const minutes = Math.floor(totalSeconds / 60);
