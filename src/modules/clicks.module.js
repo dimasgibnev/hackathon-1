@@ -8,17 +8,22 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
+        const statisticModule = document.querySelector('.clicks-amount__statistic');
         document.body.addEventListener('click', this.countClick);
         document.body.addEventListener('dblclick', this.countDblClick);
 
+        if (statisticModule) {
+            statisticModule.remove();
+        }
+
         setTimeout(() => {       
             document.body.append(this.addStatistic(this.count, this.dblclick));
-            const statisticModule = document.querySelector('.clicks-amount__statistic');
             const closeBtn = document.querySelector('.clicks-amount__close-button');
-            
+            const statisticModule = document.querySelector('.clicks-amount__statistic');
             closeBtn.addEventListener('click', () => {
                 statisticModule.remove();
             });
+
             document.body.addEventListener('contextmenu', event => {
                 event.preventDefault();
                 statisticModule.remove();
