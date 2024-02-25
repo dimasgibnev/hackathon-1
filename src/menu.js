@@ -3,6 +3,7 @@ import { ClicksModule } from './modules/clicks.module';
 import { TimerModule } from './modules/countdownTimer.module';
 import { BackgroundModule } from './modules/background.module';
 import {ShapeModule} from './modules/randomFigure.module';
+import { SoundModule } from './modules/sound.module';
 
 export class ContextMenu extends Menu {
     constructor(selector) {
@@ -10,7 +11,8 @@ export class ContextMenu extends Menu {
         this.modules = [new ClicksModule('clicks', 'Считать клики(за 3 секунды)'),
         new TimerModule('timer', 'Таймер'),
         new BackgroundModule('background', 'Случайный фон'),
-        new ShapeModule('shape', 'Случайная фигура')];
+        new ShapeModule('shape', 'Случайная фигура'),
+        new SoundModule('sound', 'Случайный звук')];
         this.modules.forEach(module => this.add(module));
         const { greetModal, confirmBtn } = this.greetingWindow();
 
