@@ -7,11 +7,10 @@ export class ClicksModule extends Module {
     }
 
     trigger() {
-
-
         document.body.addEventListener('click', this.countClick);
-
-        setTimeout(() => {         
+        document.body.addEventListener('dblclick', this.countDblClick);
+        setTimeout(() => {       
+            alert('Время вышло');
             document.body.append(this.addStatistic(this.count));
             const statisticModule = document.querySelector('.clicks-amount__statistic');
             
@@ -25,20 +24,32 @@ export class ClicksModule extends Module {
             const module = document.querySelector('.clicks-container')
             module.remove();
             document.body.removeEventListener('click', this.countClick);
+            document.body.addEventListener('dblclick', this.countDblClick);
         }, 3000)
     }
 
-    countClick = (event) => {
-        if (event) {
-            this.count += 1;
-            const clickModule = this.render(this.count);
-            const module = document.querySelector('.clicks-container');
+    countClick = () => {
+        const clickModule = this.render(this.count);
+        const module = document.querySelector('.clicks-container');
+        this.count += 1;
+        
+        if (!document.body.contains(clickModule)) {
+            document.body.append(clickModule);
+            if (module) {
+                module.remove();
+            }
+        }
+    }
 
-            if (!document.body.contains(clickModule)) {
-                document.body.append(clickModule);
-                if (module) {
-                    module.remove();
-                }
+    countDblClick = () => {
+        const clickModule = this.render(this.count);
+        const module = document.querySelector('.clicks-container');
+        this.count += 2;
+        
+        if (!document.body.contains(clickModule)) {
+            document.body.append(clickModule);
+            if (module) {
+                module.remove();
             }
         }
     }
@@ -50,7 +61,7 @@ export class ClicksModule extends Module {
 
         const clicks = document.createElement('span');
         clicks.className = 'clicks-amount';
-        clicks.textContent = `Кликов: ${count - 1}`;
+        clicks.textContent = `Кликов: ${count}`;
 
         container.append(clicks);
 
@@ -65,7 +76,10 @@ export class ClicksModule extends Module {
         clicks.className = 'clicks-amount';
         clicks.textContent = `Всего кликов: ${count - 1}`;
 
-        container.append(clicks);
+        const closeBtn = document.createElement('div');
+        closeBtn.className = 'clicks-amount__close-button';
+
+        container.append(clicks, closeBtn);
 
         return container;
     }

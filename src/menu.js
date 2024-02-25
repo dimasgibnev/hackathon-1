@@ -12,11 +12,15 @@ export class ContextMenu extends Menu {
         this.modules.forEach(module => this.add(module));
         const { greetModal, confirmBtn } = this.greetingWindow();
 
-        document.body.addEventListener('click', event => {
-            if (event.target == confirmBtn) {
-                greetModal.classList.add('greet-modal_hidden');
-            }
+        let promise = new Promise(function(resolve, reject) {
+            document.body.addEventListener('click', event => {
+                if (event.target == confirmBtn) {
+                    greetModal.classList.add('greet-modal_hidden');
+                    resolve("done");
+                }
+              });
           });
+
 
         this.el.addEventListener('click', (event) => {
             if (event.target) {
@@ -29,9 +33,11 @@ export class ContextMenu extends Menu {
             }
         });
 
-        document.body.addEventListener('contextmenu', event => {
-            event.preventDefault();
-            this.open(event);
+        promise.then(() => {
+            document.body.addEventListener('contextmenu', event => {
+                event.preventDefault();
+                this.open(event);
+            })
         });
     }
 

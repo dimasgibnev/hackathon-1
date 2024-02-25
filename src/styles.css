@@ -99,6 +99,14 @@ body {
     border-radius: 5px;
 }
 
+.clicks-amount__close-button {
+    position: relative;
+    background-color: #ff0000;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
 .clicks-amount {
     position: fixed;
     padding: 10px;
