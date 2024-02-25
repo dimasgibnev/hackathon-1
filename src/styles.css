@@ -15,7 +15,7 @@ body {
 }
 
 .menu {
-    position: fixed;
+    position: absolute;
     z-index: 1000;
     width: 150px;
     background: #1b1a1a;
@@ -26,6 +26,45 @@ body {
 
 .menu.open {
     display: block;
+}
+
+.greet-modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 50px;
+
+    justify-content: center;
+    text-align: center;
+
+    background-color: #343434;
+    z-index: 1000;
+    transition: 0.2s ease;
+}
+
+.greet-modal.greet-modal_hidden {
+    display: none;
+}
+
+.greet-modal__text {
+    position: fixed;
+    top: 40%;
+    color: #eee;
+    text-align: center;
+}
+
+.greet-modal__button {
+    position: fixed;
+    top: 45%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    color: #eee;
+    background-color: #ff0000;
+    cursor: pointer;
 }
 
 .menu .menu-item {
@@ -52,7 +91,7 @@ body {
 
 .clicks-amount {
     position: fixed;
-    padding: 8px 10px;
+    padding: 10px;
     color: #eee;
     font-size: 20px;
 }
